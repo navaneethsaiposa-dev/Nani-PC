@@ -1,0 +1,13 @@
+import mongoose from 'mongoose';
+import dotenv from 'dotenv';
+dotenv.config();
+const schema=new mongoose.Schema({name:String,duration:Number,genres:[String],moods:[String],languages:[String],audience:String,rating:String,emoji:String,colors:[String],description:String,videoUrl:String,thumbnailUrl:String,provider:String});
+const Title=mongoose.model('Title',schema);
+const titles=[
+{name:'Insidious Out of further',duration:112,genres:['horror','drama'],moods:['exciting'],languages:['English'],audience:'family',rating:'U/A',emoji:'☕',colors:['#496f82','#b8dce8'],description:'A suspenseful feature for viewers seeking an intense story.',videoUrl:'https://example.com/replace-with-authorized-video',thumbnailUrl:'https://cdn.district.in/movies-assets/images/cinema/Insidious--Out-of-The-Further-844b74f0-37d7-11f1-840e-63804c65ce25.jpg',provider:'other'},
+{name:'The Hard Target',duration:90,genres:['thriller'],moods:['exciting'],languages:['English'],audience:'family',rating:'U/A',emoji:'☀',colors:['#d17b5c','#f6c693'],description:'A fast-paced thriller for an exciting watch.',videoUrl:'https://www.youtube.com/embed/10tX_ksFtug',thumbnailUrl:'https://i.ytimg.com/vi/KdAgoWI7fRc/hqdefault.jpg',provider:'youtube'},
+{name:'Skybound',duration:88,genres:['action','drama'],moods:['exciting','inspiring'],languages:['English'],audience:'teen',rating:'12A',emoji:'✈',colors:['#4566a0','#9cc9e6'],description:'An uplifting adventure about courage and second chances.',videoUrl:'https://www.youtube.com/embed/VIDEO_ID_4',thumbnailUrl:'https://img.youtube.com/vi/VIDEO_ID_4/maxresdefault.jpg',provider:'youtube'},
+{name:'Little Lanterns',duration:24,genres:['animation'],moods:['relaxing','inspiring'],languages:['English','Tamil'],audience:'kids',rating:'U',emoji:'★',colors:['#8067a4','#f3c9dc'],description:'A gentle animated tale made for curious young viewers.',videoUrl:'https://www.youtube.com/embed/VIDEO_ID_5',thumbnailUrl:'https://img.youtube.com/vi/VIDEO_ID_5/maxresdefault.jpg',provider:'youtube'},
+{name:'Monsoon Letters',duration:72,genres:['drama'],moods:['relaxing','inspiring'],languages:['Hindi','English'],audience:'adult',rating:'PG',emoji:'☔',colors:['#5e7896','#c1d9e8'],description:'A thoughtful story of memories, family, and home.',videoUrl:'https://www.youtube.com/embed/VIDEO_ID_6',thumbnailUrl:'https://img.youtube.com/vi/VIDEO_ID_6/maxresdefault.jpg',provider:'youtube'}
+];
+await mongoose.connect(process.env.MONGODB_URI);await Title.deleteMany({});await Title.insertMany(titles);console.log(`Seeded ${titles.length} titles`);await mongoose.disconnect();
